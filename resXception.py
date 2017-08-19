@@ -1,3 +1,7 @@
+"""ResXception: Deep convolutional neural net that combines
+residual blocks with depth-wise separable convolutions.
+"""
+
 from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import

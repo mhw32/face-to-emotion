@@ -102,3 +102,6 @@ ENV/
 
 # ipython notebooks
 notebooks/
+data/
+weights/
+
