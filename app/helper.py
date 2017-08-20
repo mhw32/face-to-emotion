@@ -6,7 +6,7 @@ import base64
 import numpy as np
 
 import cv2
-from StringIO import StringIO
+from io import StringIO
 
 from app import nn
 from model.utils import (clean_image,
