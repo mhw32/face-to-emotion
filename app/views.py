@@ -1,6 +1,7 @@
 from app import app
 from flask import request, Response, jsonify
 
+import json
 from .helper import (read_base64_image, image_to_face_crop,
                      classify_image)
 
@@ -13,11 +14,11 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.data
-    base64_str = data.image
+    data = json.loads(request.data)
+    base64_str = data.get('image')
 
     # guaranteed to have a list of faces
-    faces = data.faces  # trueface api
+    faces = data.get('faces')  # trueface api
 
     rgb_image = read_base64_image(base64_str)
 
