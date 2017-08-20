@@ -13,3 +13,7 @@ The model is trained on the FER2013 dataset [[3](https://arxiv.org/abs/1307.0414
 There's also a folder in `app/` that stores a vanilla web application with a single endpoint that reads a base64 encoded string representing an image and outputs a map of emotion probabilities per face.
 
 **Note**: This assumes that incoming requests will also pass coordinates for facial objects in the scene. In our instance, we used the [True Face API](http://trueface.ai/). We use the coordinates to pre-crop our image before sending it to our model.
+
+## Additional Info
+
+This project was entered in the TrueFace.ai hackathon.
