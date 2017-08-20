@@ -1,5 +1,5 @@
 from app import app
-from flask import request, Response, jsonify
+from flask import request, Response
 
 import json
 from .helper import (read_base64_image, image_to_face_crop,
@@ -30,5 +30,7 @@ def predict():
         emotion_map = classify_image(face_image)
         emotion_maps.append(emotion_map)
 
-    return Response(response=jsonify(emotion_maps),
+    emotion_maps = {'data': emotion_maps}
+    emotion_maps = json.dumps(emotion_maps)
+    return Response(response=emotion_maps,
                     mimetype="application/json")

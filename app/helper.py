@@ -8,7 +8,7 @@ import numpy as np
 import cv2
 from io import StringIO
 
-from app import nn
+from app import nn, graph
 from model.utils import (clean_image,
                          FER2013_LABEL_TO_STRING_DICT)
 
@@ -50,7 +50,7 @@ def index_to_emotion(proba):
     @param proba: numpy array of size 7
     @return: map of emotion string to proba
     """
-    assert proba.size == 7
+    assert len(proba) == 7
     proba_map = {}
     for i in range(7):
         proba_map[FER2013_LABEL_TO_STRING_DICT[i]] = proba[i]
@@ -72,7 +72,8 @@ def classify_image(image):
     gray_image = np.expand_dims(gray_image, 0)
     gray_image = np.expand_dims(gray_image, -1)
 
-    emotion_proba = nn.predict(gray_image)
-    emotion_map = index_to_emotion(emotion_proba)
+    with graph.as_default():
+        emotion_proba = nn.predict(gray_image)
+    emotion_map = index_to_emotion(emotion_proba[0].tolist())
     return emotion_map
 
