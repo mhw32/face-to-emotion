@@ -1,9 +1,8 @@
 from app import app
 from flask import request, Response, jsonify
 
-from helper import (read_base64_image,
-                    image_to_face_crop,
-                    classify_image)
+from .helper import (read_base64_image, image_to_face_crop,
+                     classify_image)
 
 
 @app.route('/')
