@@ -20,7 +20,7 @@ def predict():
     # guaranteed to have a list of faces
     faces = data.faces  # trueface api
 
-    rgb_image = read_base64_image9(base64_str)
+    rgb_image = read_base64_image(base64_str)
 
     # face_images is a list of rgb images
     face_images = image_to_face_crop(rgb_image, faces)
