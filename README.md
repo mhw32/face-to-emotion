@@ -16,4 +16,4 @@ There's also a folder in `app/` that stores a vanilla web application with a sin
 
 ## Additional Info
 
-This project was entered in the TrueFace.ai hackathon.
+This project was entered in the TrueFace.ai hackathon. A Heroku instance is currently up at [https://face2emotionapp.herokuapp.com/](https://face2emotionapp.herokuapp.com/).
