@@ -58,5 +58,5 @@ def ResXceptionNet(input_shape, n_class):
     x = Conv2D(n_class, (3, 3), padding='same')(x)
     x = GlobalAveragePooling2D()(x)
 
-    output = Activation('softmax', name='proba')(x)
+    output = Activation('softmax', name='predictions')(x)
     return Model(input, output)

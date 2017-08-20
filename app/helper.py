@@ -21,7 +21,7 @@ def read_base64_image(base64_str):
     """
     nparr = np.fromstring(base64_str.decode('base64'),
                           np.uint8)
-    rgb_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    bgr_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
     return rgb_image
 
@@ -35,8 +35,10 @@ def image_to_face_crop(rgb_image, trueface_responses):
     """
     face_images = []
     for response in trueface_responses:
-        bbox = responses['bounding_box'][:-1]  # ignore confidence
-        face_image = rgb_image[bbox[1]:bbox[3], bbox[0]:bbox[2]]
+        bbox = response['bounding_box'][:-1]  # ignore confidence
+        x0, x1 = int(np.round(bbox[1])),  int(np.round(bbox[3]))
+        y0, y1 = int(np.round(bbox[0])), int(np.round(bbox[2]))
+        face_image = rgb_image[x0:x1, y0:y1]
         face_images.append(face_image)
 
     return face_images
@@ -65,7 +67,7 @@ def classify_image(image):
     """
     nn_input_shape = nn.input_shape[1:3]
     gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-    gray_image = cv2.resize(gray_image, (net_input_shape))
+    gray_image = cv2.resize(gray_image, (nn_input_shape))
     gray_image = clean_image(gray_image)
     gray_image = np.expand_dims(gray_image, 0)
     gray_image = np.expand_dims(gray_image, -1)
