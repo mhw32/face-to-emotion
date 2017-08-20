@@ -19,7 +19,9 @@ def read_base64_image(base64_str):
     @param base64_str: base64 encoded string
     @return: numpy array RGB (H x W x C)
     """
-    nparr = np.fromstring(base64_str.decode('base64'),
+    print(type(base64_str))
+    print(base64_str[:100])
+    nparr = np.fromstring(base64.b64decode(base64_str),  # base64_str.decode('base64'),
                           np.uint8)
     bgr_image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
